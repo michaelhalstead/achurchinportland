@@ -59,3 +59,9 @@ function a_church_in_portland_customize_preview_js() {
 	wp_enqueue_script( 'a-church-in-portland-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
 }
 add_action( 'customize_preview_init', 'a_church_in_portland_customize_preview_js' );
+
+function jt_customize_register( $wp_customize ) {
+
+	$wp_customize->remove_control( 'custom_css' );
+}
+add_action( 'customize_register', 'jt_customize_register' );

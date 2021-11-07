@@ -1,0 +1,21 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+.btn {
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-large {
+    padding: 5px 25px;
+}
+
+.btn-primary {
+    @include button($color-primary);
+}
+
+.btn-secondary {
+    @include button($color-secondary);
+}

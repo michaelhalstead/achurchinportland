@@ -1,0 +1,94 @@
+@use 'variables' as *;
+@use "sass:color";
+@use "sass:math";
+@use "sass:map";
+
+@mixin button($bg, $filled: true, $color: #fff) {
+    color: $color;
+    border: 1px solid $bg;
+    &:hover {
+        border-color: color.scale($bg, $lightness: -30%);
+    }
+
+    @if $filled {
+        background-color: $bg;
+        &:hover {
+            background: color.scale($bg, $lightness: -30%);
+        }
+    }
+
+    @else {
+        background-color: transparent;
+    }
+}
+
+@mixin cols($viewport) {
+    .col-#{viewport} {
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
+    }
+
+    @if $viewport != xs {
+        $ports: ("sm": $container-sm, "md": $container-md, "lg": $container-lg);
+        .container {
+            width: map.get($ports, $viewport);
+        }
+    }
+
+    @for $i from 1 through 12 {
+        .col-#{$viewport}-#{$i} {
+            flex-basis: math.percentage(math.div($i, 12));
+            max-width: math.percentage(math.div($i, 12));
+        }
+    }
+
+    @for $i from 0 through 11 {
+        .col-#{$viewport}-offset-#{$i} {
+            margin-left: math.percentage(math.div($i, 12));
+        }
+    }
+
+    .start-#{viewport} {
+        justify-content: flex-start;
+        text-align: start;
+    }
+
+    .center-#{viewport} {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .end-#{viewport} {
+        justify-content: flex-end;
+        text-align: end;
+    }
+
+    .top-#{viewport} {
+        align-items: flex-start;
+    }
+
+    .middle-#{viewport} {
+        align-items: center;
+    }
+
+    .bottom-#{viewport} {
+        align-items: flex-end;
+    }
+
+    .around-#{viewport} {
+        justify-content: space-around;
+    }
+
+    .between-#{viewport} {
+        justify-content: space-between;
+    }
+
+    .first-#{viewport} {
+        order: -1;
+    }
+
+    .last-#{viewport} {
+        order: 1;
+    }
+}

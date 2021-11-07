@@ -1,0 +1,144 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use "sass:math";
+@use "sass:map";
+
+// Grid
+.container-fluid,
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  padding-right: $outer-margin;
+  padding-left: $outer-margin;
+}
+
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: $gutter-compensation;
+  margin-left: $gutter-compensation;
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+[class^="col-xs"],
+[class^="col-sm"],
+[class^="col-md"],
+[class^="col-lg"] {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  padding-right: $half-gutter-width;
+  padding-left: $half-gutter-width;
+}
+
+.col.reverse {
+  flex-direction: column-reverse;
+}
+
+@include cols(xs);
+
+@media only screen and (min-width: 48em) {
+  @include cols(sm);
+}
+
+@media only screen and (min-width: 64em) {
+  @include cols(md);
+}
+
+@media only screen and (min-width: 75em) {
+  @include cols(lg);
+}
+
+
+// Margins and padding
+$rems: (0: 0, 1: 0.25rem, 2: 0.5rem, 3: 1rem, 4: 1.5rem, 5: 3rem);
+
+@for $i from 0 through 5 {
+  // Margin
+  .m-#{$i} {
+    margin: map.get($rems, $i) !important;
+  }
+  .mx-#{$i} {
+    margin-right: map.get($rems, $i) !important;
+    margin-left: map.get($rems, $i) !important;
+  }
+  .my-#{$i} {
+    margin-top: map.get($rems, $i) !important;
+    margin-bottom: map.get($rems, $i) !important;
+  }
+  .mt-#{$i} {
+    margin-top: map.get($rems, $i) !important;
+  }
+  .mb-#{$i} {
+    margin-bottom: map.get($rems, $i) !important;
+  }
+  .me-#{$i} {
+    margin-right: map.get($rems, $i) !important;
+  }
+  .ms-#{$i} {
+    margin-left: map.get($rems, $i) !important;
+  }
+
+  // Padding
+  .p-#{$i} {
+    padding: map.get($rems, $i) !important;
+  }
+  .px-#{$i} {
+    padding-right: map.get($rems, $i) !important;
+    padding-left: map.get($rems, $i) !important;
+  }
+  .py-#{$i} {
+    padding-top: map.get($rems, $i) !important;
+    padding-bottom: map.get($rems, $i) !important;
+  }
+  .pt-#{$i} {
+    padding-top: map.get($rems, $i) !important;
+  }
+  .pb-#{$i} {
+    padding-bottom: map.get($rems, $i) !important;
+  }
+  .pe-#{$i} {
+    padding-right: map.get($rems, $i) !important;
+  }
+  .ps-#{$i} {
+    padding-left: map.get($rems, $i) !important;
+  }
+}
+
+// Auto margins
+.m-auto {
+  margin: auto !important;
+}
+
+.mx-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.my-auto {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.me-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ms-auto {
+  margin-left: auto !important;
+}
